@@ -4,8 +4,7 @@
 require('dotenv').config();
 
 const path = require('path');
-const isProduction = process.env.NODE_ENV === 'production';
-const fastify = require('fastify')({ logger: isProduction ? { level: 'warn' } : true });
+const fastify = require('fastify')({ logger: true });
 
 async function start() {
   // CORS — explicitly allow all methods and headers
@@ -14,11 +13,6 @@ async function start() {
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
-  });
-
-  // Security headers
-  await fastify.register(require('@fastify/helmet'), {
-    contentSecurityPolicy: false  // Disabled since we serve HTML with inline styles
   });
 
   // Multipart for file uploads
