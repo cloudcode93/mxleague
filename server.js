@@ -23,7 +23,7 @@ const fastify = require('fastify')({
 async function start() {
   // CORS
   await fastify.register(require('@fastify/cors'), {
-    origin: process.env.NODE_ENV === 'production' ? 'https://mxleague93.onrender.com' : true,
+    origin: true,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
